@@ -3,8 +3,15 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
+
 app.get('/', (req ,res) => {
-    res.send('Home Page');
+    res.render('index');
+});
+
+app.use((req, res, next) => {
+    res.status(404)
+        .send('404 - Not found');
 });
 
 app.listen(PORT, () => {
